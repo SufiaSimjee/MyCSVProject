@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSV Tables</title>
+</head>
+<body>
+
+<h2>Upload CSV File</h2>
+
+<form action="/upload" method="POST" enctype="multipart/form-data">
+  <input type="file" name="csvfile" required />
+  <button type="submit">Upload</button>
+</form>
+
+<% if (table1) { %>
+
+<h2>Table 1</h2>
+
+<table border="1">
+  <thead>
+    <tr>
+      <% Object.keys(table1[0]).forEach(key => { %>
+        <th><%= key %></th>
+      <% }) %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% table1.forEach(row => { %>
+      <tr>
+        <% Object.values(row).forEach(val => { %>
+          <td><%= val %></td>
+        <% }) %>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<h2>Table 2</h2>
+
+<table border="1">
+  <tr>
+    <th>Category</th>
+    <th>Value</th>
+  </tr>
+
+  <% table2.forEach(row => { %>
+    <tr>
+      <td><%= row.category %></td>
+      <td><%= row.value %></td>
+    </tr>
+  <% }) %>
+</table>
+
+<% } %>
+
+</body>
+</html>
